@@ -1,0 +1,2 @@
+-cmd (desde la carpeta donde está T07):
+pipreqs T07
