@@ -22,7 +22,7 @@ def index():
 		if len(updates_now['result']) != len(updates_ini['result']):
 			updates_ini = updates_now
 			last_update = updates_now['result'][-1]
-			text = last_update['text']
+			text = last_update['message']['text']
 			chat_id = last_update['from']['id']
 			send_msg(text, chat_id)
 
