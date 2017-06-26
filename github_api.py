@@ -16,7 +16,8 @@ def get_issue(numero):
 	url = issue_dict['html_url']
 	return state, numero, autor, titulo, texto, url
 
-with open('credentials') as f:
-	credentials = tuple(f.read().splitlines())
+credentials = ('Genaron', 'd4db47' 'c185c80ca'
+						  'e5fbfc35c' 'd2c26d885e98ff7f')
 
 repo_api_url = 'https://api.github.com/repos/Genaron/T07'
+print(get_issue(1))
