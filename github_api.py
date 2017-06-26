@@ -55,9 +55,20 @@ def add_label(numero, label):
 			return 'El label solicitado ya existía en esta issue!'
 	req = requests.post(issue_labels_url, json=[label], auth=credentials)
 	if req.status_code == 200:
-		return 'Label agregada con éxito!'
-	return 'No se pude agregar el label.'
+		return 'Label {} agregada con éxito!'.format(label)
+	return 'No fue posible agregar el label {}.'.format(label)
+
+
+def close_issue(numero):
+	global repo_api_url, credentials
+	issue_url = repo_api_url + '/issues/' + str(numero)
+	params = {'state': 'closed'}
+	req = requests.patch(issue_url, json=params, auth=credentials)
+	if req.status_code == 200:
+		return 'Se ha cerrado la issue {}.'.format(numero)
+	return 'No fue posible cerrar la issue {}.'.format(numero)
+
 
 credentials = ('PrograBot', 'b9ef83adb7f2525329' 'ba54724bb3d842ce3c104f')
-
 repo_api_url = 'https://api.github.com/repos/Genaron/T07'
+close_issue(1)

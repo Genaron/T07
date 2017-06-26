@@ -1,8 +1,8 @@
 import re
 import logging
 
-from github_api import get_issue, post_comment, add_label
-from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters)
+from github_api import get_issue, post_comment, add_label, close_issue
+from telegram.ext import (Updater, CommandHandler)
 
 
 token_bot = '439953184:AAFdqVKqmxFOnKuClHhjCPN0v0Ee1ZmMwZw'
@@ -20,9 +20,10 @@ def start(bot, update):
     text += 'm/Genaron/T07\n-------------\nCOMANDOS:\n/get #num_issue:'
     text += 'Se obtiene la información asociada a la issue correspondiente.\n'
     text += '/post #num_issue *respuesta: Se responde la issue correspondiente '
-    text += 'con la respuesta entregada.\n/label #num_issue label: Se asigna la'
-    text += ' etiqueta indicada al issue correspondiente.\n/close #num_issue: '
-    text += 'se cierra la issue indicada.'
+    text += 'con la respuesta entregada.\n/label #num_issue *label: Se asigna l'
+    text += 'a etiqueta indicada al issue correspondiente.\n/close #num_issue: '
+    text += 'se cierra la issue indicada.\n-------------\nNota: no escribir el '
+    text += '\'#\' ni el \'*\' al momento de llamar a los comandos anteriores.'
     bot.send_message(chat_id=update.message.chat_id, text=text)
 
 
@@ -75,6 +76,8 @@ def post(bot, update):
         items = get_issue(issue_id)
         if items is None:
             text = 'No existe la issue {}'.format(issue_id)
+        elif items[0] == 'closed':
+            text = 'La issue {} ya está cerrada.'.format(issue_id)
         else:
             signature = '\n\n----------\nRespuesta generada por {} desde ' \
                         '@GenaroLaymunsBot de Telegram.'.format(user)
@@ -106,18 +109,18 @@ def label(bot, update):
         items = get_issue(issue_id)
         if items is None:
             text = 'No existe la issue {}'.format(issue_id)
+        elif items[0] == 'closed':
+            text = 'La issue {} ya está cerrada.'.format(issue_id)
         else:
             text = add_label(issue_id, new_label)
-            if text[0] != 'N':
-                text += ' Para ver el issue con los comentarios, ingrese a ' \
-                        'https://github.com/Genaron/T07/issues/{}' \
-                        ''.format(issue_id)
+            text += ' Para ver el issue correspondiente, ingrese a ' \
+                    'https://github.com/Genaron/T07/issues/{}' \
+                    ''.format(issue_id)
         bot.send_message(chat_id=update.message.chat_id, text=text)
     else:
         cmd_error(bot, update)
 
 
-# todo
 def close(bot, update):
     comando = ''
     for s in 'close':
@@ -127,7 +130,17 @@ def close(bot, update):
     msg = update.message.text
     if bool(re.match(pattern, msg)):
         issue_id = msg.split(' ')[1]
-        text = 'Cerrando issue número: {}'.format(issue_id)
+
+        items = get_issue(issue_id)
+        if items is None:
+            text = 'No existe la issue {}'.format(issue_id)
+        elif items[0] == 'closed':
+            text = 'La issue {} ya estaba cerrada.'.format(issue_id)
+        else:
+            text = close_issue(issue_id)
+            text += ' Para ver el issue correspondiente, ingrese a ' \
+                    'https://github.com/Genaron/T07/issues/{}' \
+                    ''.format(issue_id)
         bot.send_message(chat_id=update.message.chat_id, text=text)
     else:
         cmd_error(bot, update)
@@ -147,8 +160,5 @@ dispatcher.add_handler(label_handler)
 
 close_handler = CommandHandler('close', close)
 dispatcher.add_handler(close_handler)
-
-echo_handler = MessageHandler(Filters.text, start)
-dispatcher.add_handler(echo_handler)
 
 updater.start_polling()
