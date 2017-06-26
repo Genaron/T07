@@ -1,5 +1,4 @@
 import re
-import logging
 
 from github_api import get_issue, post_comment, add_label, close_issue
 
