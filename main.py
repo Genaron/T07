@@ -35,7 +35,7 @@ def send_msg(text, chat_id):
 
 def get_updates():
 	global url
-	url_updates = url + 'getUpdates'  # '?timeout=100'
+	url_updates = url + 'getUpdates?timeout=100'
 	updates = requests.get(url_updates).json()
 	return updates
 
