@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0148994b-a0db-482c-898e-31d7a0057eef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/github_api.py" afterPath="$PROJECT_DIR$/github_api.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mi_bot.py" afterPath="$PROJECT_DIR$/mi_bot.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,7 +25,7 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
+            <state relative-caret-position="68">
               <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -38,15 +37,13 @@
       <file leaf-file-name="mi_bot.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mi_bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="114" column="0" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+            <state relative-caret-position="239">
+              <caret line="130" column="18" lean-forward="true" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#489#1182#0" expanded="false" />
-                <element signature="e#1214#1372#0" expanded="false" />
-                <element signature="e#1398#2148#0" expanded="false" />
-                <element signature="e#2175#3191#0" expanded="false" />
-                <element signature="e#3815#4170#0" expanded="false" />
+                <element signature="e#512#1232#0" expanded="false" />
+                <element signature="e#1267#1431#0" expanded="false" />
+                <element signature="e#1460#2354#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -55,13 +52,12 @@
       <file leaf-file-name="github_api.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/github_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="275">
+              <caret line="52" column="26" lean-forward="false" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#56#510#0" expanded="false" />
                 <element signature="e#551#769#0" expanded="false" />
-                <element signature="e#803#1836#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -437,7 +433,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36877078" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43687707" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18604651" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -462,22 +458,9 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/github_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#56#510#0" expanded="false" />
-            <element signature="e#551#769#0" expanded="false" />
-            <element signature="e#803#1836#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
+        <state relative-caret-position="68">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -485,17 +468,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/github_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="52" column="26" lean-forward="false" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#56#510#0" expanded="false" />
+            <element signature="e#551#769#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mi_bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="114" column="0" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+        <state relative-caret-position="239">
+          <caret line="130" column="18" lean-forward="true" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#489#1182#0" expanded="false" />
-            <element signature="e#1214#1372#0" expanded="false" />
-            <element signature="e#1398#2148#0" expanded="false" />
-            <element signature="e#2175#3191#0" expanded="false" />
-            <element signature="e#3815#4170#0" expanded="false" />
+            <element signature="e#512#1232#0" expanded="false" />
+            <element signature="e#1267#1431#0" expanded="false" />
+            <element signature="e#1460#2354#0" expanded="false" />
           </folding>
         </state>
       </provider>
