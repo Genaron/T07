@@ -1,10 +1,10 @@
 import os
 import requests
-import subprocess
+import mi_bot
+
 from flask import Flask
 
 
-subprocess.Popen('mi_bot.py')
 app = Flask(__name__)
 
 
