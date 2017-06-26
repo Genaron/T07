@@ -1,6 +1,8 @@
 import os
+import time
 import logging
 import requests
+
 from mi_bot import start, get, post, label, close
 from flask import Flask
 
@@ -25,6 +27,7 @@ def index():
 			text = last_update['message']['text']
 			chat_id = last_update['message']['from']['id']
 			send_msg(text, chat_id)
+		time.sleep(0.5)
 
 
 def send_msg(text, chat_id):
