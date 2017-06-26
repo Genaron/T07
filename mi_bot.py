@@ -6,10 +6,11 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters)
 
 
 token_bot = '439953184:AAFdqVKqmxFOnKuClHhjCPN0v0Ee1ZmMwZw'
+# url = 'https://api.telegram.org/bot{}/'.format(token_bot)
 updater = Updater(token=token_bot)
 dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - '
-							'%(message)s', level=logging.INFO)
+						   '%(message)s',level=logging.INFO)
 
 
 def start(bot, update):
@@ -30,6 +31,7 @@ def cmd_error(bot, update):
 	bot.send_message(chat_id=update.message.chat_id, text=text)
 
 
+# todo
 def get(bot, update):
 	comando = ''
 	for s in 'get':
