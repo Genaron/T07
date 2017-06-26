@@ -71,4 +71,3 @@ def close_issue(numero):
 
 credentials = ('PrograBot', 'b9ef83adb7f2525329' 'ba54724bb3d842ce3c104f')
 repo_api_url = 'https://api.github.com/repos/Genaron/T07'
-close_issue(1)
