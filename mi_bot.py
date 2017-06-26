@@ -77,10 +77,9 @@ def post(bot, update):
         else:
             status = post_comment(issue_id, respuesta)
             if status == 201:
-                text = 'Issue número {} respondida con éxito. Para ver el ' \
-                       'issue con los comentarios, ingrese a https://api.g' \
-                       'ithub.com/repos/Genaron/T07/issues/{}' \
-                       ''.format(issue_id, issue_id)
+                text = 'Issue número {} respondida con éxito! Para ver el ' \
+                       'issue con los comentarios, ingrese a https://github' \
+                       '.com/Genaron/T07/issues/{}'.format(issue_id, issue_id)
             else:
                 text = 'No fue posible comentar el issue.'
         bot.send_message(chat_id=update.message.chat_id, text=text)
