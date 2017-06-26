@@ -1,4 +1,5 @@
 import os
+import time
 import logging
 import requests
 
@@ -27,7 +28,7 @@ def index():
             text = last_update['message']['text']
             chat_id = last_update['message']['from']['id']
             handle_msg(text, user, chat_id)
-        # time.sleep(0.5)
+        time.sleep(0.5)
 
 
 def get_updates():
