@@ -9,15 +9,15 @@ url = 'https://api.telegram.org/bot{}/'.format(token_bot)
 
 
 def start(user, chat_id):
-    text = 'Hola {}!\n'.format(user)
+    text = 'Hola {}!'.format(user)
     text += 'Soy PrograBot! Con mi ayuda, podrás manejar algunas funcional'
     text += 'idades de los issues presentes en el repositorio https://github.co'
-    text += 'm/Genaron/T07\n-------------\nCOMANDOS:\n/get #num_issue:'
-    text += 'Se obtiene la información asociada a la issue correspondiente.\n'
+    text += 'm/Genaron/T07-------------COMANDOS:/get #num_issue:'
+    text += 'Se obtiene la información asociada a la issue correspondiente. '
     text += '/post #num_issue *respuesta: Se responde la issue correspondiente '
-    text += 'con la respuesta entregada.\n/label #num_issue *label: Se asigna l'
-    text += 'a etiqueta indicada al issue correspondiente.\n/close #num_issue: '
-    text += 'se cierra la issue indicada.\n-------------\nNota: no escribir el '
+    text += 'con la respuesta entregada. /label #num_issue *label: Se asigna l'
+    text += 'a etiqueta indicada al issue correspondiente. /close #num_issue: '
+    text += 'se cierra la issue indicada.-------------Nota: no escribir el '
     text += '\'#\' ni el \'*\' al momento de llamar a los comandos anteriores.'
     send_msg(text, chat_id)
 
@@ -42,12 +42,13 @@ def get(msg, chat_id):
         else:
             state, numero, autor, titulo, texto, url_ = items
             if state == 'closed':
-                text = 'La issue {} ya fue resuelta.\n\n'.format(issue_id)
+                text = 'La issue {} ya fue resuelta.'.format(issue_id)
             else:
-                text = 'La issue {} no ha sido resuelta.\n\n'.format(issue_id)
-            text += '[autor: {}]\n\n'.format(autor)
-            text += '[#{} - {}]\n\n'.format(numero, titulo)
-            text += texto + '\n\n' + url_
+                text = 'La issue {} no ha sido resuelta.'.format(issue_id)
+            text += '------------'
+            text += '[autor: {}]------------'.format(autor)
+            text += '[#{} - {}]------------'.format(numero, titulo)
+            text += texto + '------------' + url_
         send_msg(text, chat_id)
     else:
         cmd_error(chat_id)

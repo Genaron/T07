@@ -39,7 +39,7 @@ def get_updates():
 
 
 def handle_msg(text, user, chat_id):
-    if text.lower() == '/start':
+    if text[:6].lower() == '/start':
         start(user, chat_id)
     elif text[:4].lower() == '/get':
         get(text, chat_id)
