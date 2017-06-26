@@ -16,7 +16,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return 'El servidor está arriba!'
+	updates_ini = get_updates()
+	while True:
+		updates_now = get_updates()
+		if len(updates_now['result']) != len(updates_ini['result']):
+			updates_ini = updates_now
+			last_update = updates_now['result'][-1]
+			text = last_update['text']
+			chat_id = last_update['from']['id']
+			send_msg(text, chat_id)
 
 
 def send_msg(text, chat_id):
@@ -35,14 +43,3 @@ def get_updates():
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8080))
 	app.run(host='https://heroku-app-t07.herokuapp.com/', port=port)
-
-	updates_ini = get_updates()
-	while True:
-		updates_now = get_updates()
-		if len(updates_now['result']) != len(updates_ini['result']):
-			updates_ini = updates_now
-			last_update = updates_now['result'][-1]
-			text = last_update['text']
-			chat_id = last_update['from']['id']
-			send_msg(text, chat_id)
-
