@@ -40,16 +40,22 @@ def get_updates():
 
 def handle_msg(text, user, chat_id):
     if text[:6].lower() == '/start':
+        print(1)
         start(user, chat_id)
     elif text[:4].lower() == '/get':
+        print(2)
         get(text, chat_id)
     elif text[:5].lower() == '/post':
+        print(3)
         post(text, user, chat_id)
     elif text[:6].lower() == '/label':
+        print(4)
         label(text, chat_id)
     elif text[:6].lower() == '/close':
+        print(5)
         close(text, chat_id)
     elif text[0] == '/':
+        print(6)
         cmd_error(chat_id)
 
 
