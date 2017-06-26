@@ -1,13 +1,14 @@
-import flask
+import os
+from flask import Flask
 
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return '<h1>Bienvenido a nuestro primer Web Service!</h1><br/>' \
-           'Aquí podrás escribir en HTML como si fuera una página ' \
-           'Web cualquiera.'
+	return 'Hello World!'
 
-app.run()
+if __name__ == '__main__':
+	port = int(os.environ.get('PORT', 8080))
+	app.run(host='https://heroku-app-t07.herokuapp.com/', port=port)
