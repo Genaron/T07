@@ -10,15 +10,15 @@ url = 'https://api.telegram.org/bot{}/'.format(token_bot)
 
 def start(user, chat_id):
     text = 'Hola {}!'.format(user)
-#    text += 'Soy PrograBot! Con mi ayuda, podrás manejar algunas funcional'
-#    text += 'idades de los issues presentes en el repositorio https://github.co'
-#    text += 'm/Genaron/T07-------------COMANDOS:/get #num_issue:'
-#    text += 'Se obtiene la información asociada a la issue correspondiente. '
-#    text += '/post #num_issue *respuesta: Se responde la issue correspondiente '
-#    text += 'con la respuesta entregada. /label #num_issue *label: Se asigna l'
-#    text += 'a etiqueta indicada al issue correspondiente. /close #num_issue: '
-#    text += 'se cierra la issue indicada.-------------Nota: no escribir el '
-#    text += '# ni el * al momento de llamar a los comandos anteriores.'
+    text += 'Soy PrograBot! Con mi ayuda, podrás manejar algunas funcional'
+    text += 'idades de los issues presentes en el repositorio https://github.co'
+    text += 'm/Genaron/T07. COMANDOS:/get #num_issue:'
+    text += 'Se obtiene la información asociada a la issue correspondiente. '
+    text += '/post #num_issue *respuesta: Se responde la issue correspondiente '
+    text += 'con la respuesta entregada. /label #num_issue *label: Se asigna l'
+    text += 'a etiqueta indicada al issue correspondiente. /close #num_issue: '
+    text += 'se cierra la issue indicada. Nota: no escribir el '
+    text += '# ni el * al momento de llamar a los comandos anteriores.'
     send_msg(text, chat_id)
 
 
