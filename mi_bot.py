@@ -58,8 +58,9 @@ def get(bot, update):
         cmd_error(bot, update)
 
 
-# todo
 def post(bot, update):
+    user = update.message.from_user.first_name
+
     comando = ''
     for s in 'post':
         comando += '({}|{})'.format(s, s.upper())
@@ -75,7 +76,9 @@ def post(bot, update):
         if items is None:
             text = 'No existe la issue {}'.format(issue_id)
         else:
-            status = post_comment(issue_id, respuesta)
+            signature = '\n\n----------\nRespuesta generada por {} desde ' \
+                        '@GenaroLaymunsBot de Telegram.'.format(user)
+            status = post_comment(issue_id, respuesta + signature)
             if status == 201:
                 text = 'Issue número {} respondida con éxito! Para ver el ' \
                        'issue con los comentarios, ingrese a https://github' \
