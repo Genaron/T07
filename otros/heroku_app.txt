@@ -1,1 +1,3 @@
 heroku-app-t07
+https://git.heroku.com/heroku-app-t07.git (fetch)
+https://git.heroku.com/heroku-app-t07.git (push)
