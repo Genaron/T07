@@ -3,7 +3,7 @@ import time
 import logging
 import requests
 
-from mi_bot import start, get, post, label, close
+from mi_bot import start, get, post, label, close, send_msg
 from flask import Flask
 
 
@@ -27,13 +27,7 @@ def index():
 			text = last_update['message']['text']
 			chat_id = last_update['message']['from']['id']
 			send_msg(text, chat_id)
-		time.sleep(0.5)
-
-
-def send_msg(text, chat_id):
-	global url
-	url_msg = url + 'sendMessage?text={}&chat_id={}'.format(text, chat_id)
-	requests.get(url_msg)
+		# time.sleep(0.5)
 
 
 def get_updates():
@@ -45,4 +39,7 @@ def get_updates():
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8080))
-	app.run(host='https://heroku-app-t07.herokuapp.com/', port=port)
+	host_local = 'localhost'
+	host_heroku = 'https://heroku-app-t07.herokuapp.com/'
+	# app.run(host=host_local, port=port)
+	app.run()

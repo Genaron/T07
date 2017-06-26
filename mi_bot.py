@@ -1,6 +1,11 @@
 import re
+import requests
 
 from github_api import get_issue, post_comment, add_label, close_issue
+
+
+token_bot = '439953184:AAFdqVKqmxFOnKuClHhjCPN0v0Ee1ZmMwZw'
+url = 'https://api.telegram.org/bot{}/'.format(token_bot)
 
 
 def start(bot, update):
@@ -134,3 +139,9 @@ def close(bot, update):
 		bot.send_message(chat_id=update.message.chat_id, text=text)
 	else:
 		cmd_error(bot, update)
+
+
+def send_msg(text, chat_id):
+	global url
+	url_msg = url + 'sendMessage?text={}&chat_id={}'.format(text, chat_id)
+	requests.get(url_msg)
