@@ -23,7 +23,7 @@ def index():
 			updates_ini = updates_now
 			last_update = updates_now['result'][-1]
 			text = last_update['message']['text']
-			chat_id = last_update['from']['id']
+			chat_id = last_update['message']['from']['id']
 			send_msg(text, chat_id)
 
 
