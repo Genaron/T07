@@ -46,7 +46,7 @@ def get(msg, chat_id):
             else:
                 text = 'La issue {} no ha sido resuelta.\n\n'.format(issue_id)
             text += '[autor: {}]\n\n'.format(autor)
-            text += '[#{} - {}]\n\n'.format(numero, titulo)
+            text += '[Issue número {} - {}]\n\n'.format(numero, titulo)
             text += texto + '\n\n' + url_
         send_msg(text, chat_id)
     else:
