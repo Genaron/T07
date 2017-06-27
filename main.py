@@ -27,7 +27,6 @@ def index():
         thread_update = Thread(target=run_updates)
         thread_update.start()
         return 'El servidor ha empezado!'
-    run_updates()
     return 'El servidor ya está funcionando!'
 
 
