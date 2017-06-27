@@ -27,7 +27,7 @@ def index():
         running = True
         thread_update = Thread(target=run_updates)
         thread_update.start()
-    return 'El servidor está arriba!'
+    return 'El servidor está funcionando!'
 
 
 @app.route('/upload', methods=['POST'])
@@ -36,7 +36,10 @@ def receive():
     if not running:
         return 'El bot se encuentra apagado.'
     if flask.request.headers['content-Type'] == 'application/json':
-        return json.dumps(flask.request.json)
+        event = flask.request.headers['X-GitHub-Event']
+        action = flask.request.json['action']
+        return '{} {}'.format(event, action)
+    return 'El formato no es correcto.'
 
 
 def get_updates():
