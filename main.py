@@ -25,7 +25,7 @@ def index():
     global running
     if not running:
         running = True
-        thread_update = Thread(target=run_updates)
+        thread_update = Thread(target=run_updates, daemon=True)
         thread_update.start()
     return 'El servidor está funcionando!'
 
