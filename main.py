@@ -1,5 +1,6 @@
 import os
 import time
+import json
 import flask
 import logging
 import requests
@@ -43,19 +44,21 @@ def receive():
     return 'El formato no es correcto.'
 
 
-def get_updates():
+def get_updates(first_id=0):
     global url
     url_updates = url + 'getUpdates?timeout=100'
-    updates = requests.get(url_updates).json()
+    params = {'offset': first_id}
+    updates = requests.get(url_updates, data=json.dumps(params)).json()
     return updates
 
 
 def run_updates():
     global ids
 
+    first_id = 0
     updates_ini = get_updates()
     while True:
-        updates_now = get_updates()
+        updates_now = get_updates(first_id)
         if len(updates_now['result']) != len(updates_ini['result']):
             updates_ini = updates_now
             last_update = updates_now['result'][-1]
@@ -65,6 +68,8 @@ def run_updates():
             handle_msg(text, user, chat_id)
             if chat_id not in ids:
                 ids.append(chat_id)
+        if len(updates_now) > 10:
+            first_id = get_updates(first_id)['result'][-1]['update_id'] + 1
         time.sleep(0.5)
 
 

@@ -72,3 +72,11 @@ def close_issue(numero):
 
 credentials = ('PrograBot', 'b9ef83adb7f2525329' 'ba54724bb3d842ce3c104f')
 repo_api_url = 'https://api.github.com/repos/Genaron/T07'
+
+token_bot = '439953184:AAFdqVKqmxFOnKuClHhjCPN0v0Ee1ZmMwZw'
+url = 'https://api.telegram.org/bot{}/'.format(token_bot)
+url_updates = url + 'getUpdates?timeout=100'
+header = {'content-Type': 'application/json'}
+params = {'offset': 446072412}
+updates = requests.get(url_updates, json=json.dumps(params))
+print(updates.status_code)
