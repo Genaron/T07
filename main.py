@@ -1,5 +1,4 @@
 import os
-import json
 import time
 import flask
 import logging
@@ -25,7 +24,7 @@ def index():
     global running
     if not running:
         running = True
-        thread_update = Thread(target=run_updates, daemon=True)
+        thread_update = Thread(target=run_updates)
         thread_update.start()
         return 'El servidor ha empezado!'
     return 'El servidor ya está funcionando!'
