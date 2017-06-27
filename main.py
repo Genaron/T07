@@ -46,7 +46,7 @@ def receive():
     if not running:
         return 'El bot se encuentra apagado.'
     if flask.request.headers['content-Type'] == 'application/json':
-        return flask.request.json
+        return flask.request
 
 
 def get_updates():
