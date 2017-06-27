@@ -27,7 +27,8 @@ def index():
         running = True
         thread_update = Thread(target=run_updates, daemon=True)
         thread_update.start()
-    return 'El servidor está funcionando!'
+        return 'El servidor ha empezado!'
+    return 'El servidor ya está funcionando!'
 
 
 @app.route('/upload', methods=['POST'])
