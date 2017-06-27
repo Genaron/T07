@@ -1,11 +1,10 @@
 import os
 import time
-import json
 import flask
 import logging
 import requests
 
-# from threading import Thread
+from threading import Thread
 from mi_bot import start, get, post, label, close, cmd_error
 
 
@@ -22,12 +21,12 @@ ids = []
 
 @app.route('/')
 def index():
-    # global running
-    # if not running:
-    #     running = True
-    #     thread_update = Thread(target=run_updates)
-    #     thread_update.start()
-    #     return 'El servidor ha empezado!'
+    global running
+    if not running:
+        running = True
+        thread_update = Thread(target=run_updates)
+        thread_update.start()
+        return 'El servidor ha empezado!'
     run_updates()
     return 'El servidor ya está funcionando!'
 
@@ -44,19 +43,18 @@ def receive():
     return 'El formato no es correcto.'
 
 
-def get_updates(first_id=0):
+def get_updates(first_id):
     global url
-    url_updates = url + 'getUpdates?timeout=100'
-    params = {'offset': first_id}
-    updates = requests.get(url_updates, data=json.dumps(params)).json()
+    url_updates = url + 'getUpdates?timeout=100&offset=' + str(first_id)
+    updates = requests.get(url_updates).json()
     return updates
 
 
 def run_updates():
     global ids
 
-    first_id = 0
-    updates_ini = get_updates()
+    first_id = 1
+    updates_ini = get_updates(first_id)
     while True:
         updates_now = get_updates(first_id)
         if len(updates_now['result']) != len(updates_ini['result']):
