@@ -4,7 +4,7 @@ import flask
 import logging
 import requests
 
-from threading import Thread
+# from threading import Thread
 from mi_bot import start, get, post, label, close, cmd_error
 
 
@@ -21,12 +21,13 @@ ids = []
 
 @app.route('/')
 def index():
-    global running
-    if not running:
-        running = True
-        thread_update = Thread(target=run_updates)
-        thread_update.start()
-        return 'El servidor ha empezado!'
+    # global running
+    # if not running:
+    #     running = True
+    #     thread_update = Thread(target=run_updates)
+    #     thread_update.start()
+    #     return 'El servidor ha empezado!'
+    run_updates()
     return 'El servidor ya está funcionando!'
 
 
