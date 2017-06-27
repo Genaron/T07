@@ -5,7 +5,8 @@ import logging
 import requests
 
 from threading import Thread
-from mi_bot import start, get, post, label, close, cmd_error
+from github_api import get_issue
+from mi_bot import start, get, post, label, close, cmd_error, send_msg
 
 
 token_bot = '439953184:AAFdqVKqmxFOnKuClHhjCPN0v0Ee1ZmMwZw'
@@ -38,7 +39,36 @@ def receive():
     if flask.request.headers['content-Type'] == 'application/json':
         event = flask.request.headers['X-GitHub-Event']
         action = flask.request.json['action']
-        return '{} {}'.format(event, action)
+        if [event, action] == ['issues', 'opened']:
+            text = 'Se ha abierto una nueva issue!\n\n'
+            items = get_issue(flask.request.json['issue']['number'])
+            state, numero, autor, titulo, texto, url_ = items
+            text += '[autor: {}]\n\n'.format(autor)
+            text += '[Issue número {} - {}]\n\n'.format(numero, titulo)
+            text += texto + '\n\n' + url_
+            for chat_id in ids:
+                send_msg(text, chat_id)
+        if [event, action] == ['issues', 'labeled']:
+            num = flask.request.json['issue']['number']
+            text = 'Se ha agregado un nuevo label a la issue {}'.format(num)
+            items = get_issue(flask.request.json['issue']['number'])
+            state, numero, autor, titulo, texto, url_ = items
+            text += '[autor: {}]\n\n'.format(autor)
+            text += '[Issue número {} - {}]\n\n'.format(numero, titulo)
+            text += texto + '\n\n' + url_
+            for chat_id in ids:
+                send_msg(text, chat_id)
+        if [event, action] == ['issues', 'closed']:
+            num = flask.request.json['issue']['number']
+            text = 'Se ha cerrado la issue {}!\n\n'.format(num)
+            items = get_issue(flask.request.json['issue']['number'])
+            state, numero, autor, titulo, texto, url_ = items
+            text += '[autor: {}]\n\n'.format(autor)
+            text += '[Issue número {} - {}]\n\n'.format(numero, titulo)
+            text += texto + '\n\n' + url_
+            for chat_id in ids:
+                send_msg(text, chat_id)
+        return 'Gracias!'
     return 'El formato no es correcto.'
 
 
@@ -56,7 +86,8 @@ def run_updates():
     updates_ini = get_updates(first_id)
     while True:
         updates_now = get_updates(first_id)
-        if len(updates_now['result']) != len(updates_ini['result']):
+        if len(updates_now['result']) != len(updates_ini['result']) and \
+                len(updates_now['result']) > 0:
             updates_ini = updates_now
             last_update = updates_now['result'][-1]
             user = last_update['message']['from']['first_name']
