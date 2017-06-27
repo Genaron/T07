@@ -9,7 +9,7 @@ url = 'https://api.telegram.org/bot{}/'.format(token_bot)
 
 
 def start(user, chat_id):
-    text = 'Hola {}\n!'.format(user)
+    text = 'Hola {}!\n'.format(user)
     text += 'Soy PrograBot! Con mi ayuda, podrás manejar algunas funcional'
     text += 'idades de los issues presentes en el repositorio https://github.co'
     text += 'm/Genaron/T07\n-------------\nCOMANDOS:\n/get *num_issue:'
@@ -88,7 +88,7 @@ def label(msg, chat_id):
     comando = ''
     for s in 'label':
         comando += '({}|{})'.format(s, s.upper())
-    pattern = '^/{} \d+ \w+$'.format(comando)
+    pattern = '^/{} \d+ \w+'.format(comando)
 
     if bool(re.match(pattern, msg)):
         space_1 = msg.find(' ')
@@ -122,7 +122,7 @@ def close(msg, chat_id):
 
         items = get_issue(issue_id)
         if items is None:
-            text = 'No existe la issue {}'.format(issue_id)
+            text = 'No existe la issue {}.'.format(issue_id)
         elif items[0] == 'closed':
             text = 'La issue {} ya estaba cerrada.'.format(issue_id)
         else:

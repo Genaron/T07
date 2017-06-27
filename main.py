@@ -1,10 +1,10 @@
 import os
 import time
+import flask
 import logging
 import requests
 
 from mi_bot import start, get, post, label, close, cmd_error
-from flask import Flask
 
 
 token_bot = '439953184:AAFdqVKqmxFOnKuClHhjCPN0v0Ee1ZmMwZw'
@@ -13,12 +13,19 @@ url = 'https://api.telegram.org/bot{}/'.format(token_bot)
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - '
                            '%(message)s', level=logging.INFO)
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
+running = False
+ids = []
 
 
 @app.route('/')
 def index():
+    global running, ids
+
+    if not running:
+        running = True
     updates_ini = get_updates()
+
     while True:
         updates_now = get_updates()
         if len(updates_now['result']) != len(updates_ini['result']):
@@ -28,7 +35,18 @@ def index():
             text = last_update['message']['text']
             chat_id = last_update['message']['from']['id']
             handle_msg(text, user, chat_id)
+            if chat_id not in ids:
+                ids.append(chat_id)
         time.sleep(0.5)
+
+
+@app.route('/upload', methods=['POST'])
+def receive():
+    global running, ids
+    if not running:
+        return 'El bot se encuentra apagado.'
+    if flask.request.headers['content-Type'] == 'application/json':
+        return flask.request.json
 
 
 def get_updates():
@@ -40,22 +58,16 @@ def get_updates():
 
 def handle_msg(text, user, chat_id):
     if text[:6].lower() == '/start':
-        print(1)
         start(user, chat_id)
     elif text[:4].lower() == '/get':
-        print(2)
         get(text, chat_id)
     elif text[:5].lower() == '/post':
-        print(3)
         post(text, user, chat_id)
     elif text[:6].lower() == '/label':
-        print(4)
         label(text, chat_id)
     elif text[:6].lower() == '/close':
-        print(5)
         close(text, chat_id)
     elif text[0] == '/':
-        print(6)
         cmd_error(chat_id)
 
 
