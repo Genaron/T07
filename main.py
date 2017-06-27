@@ -1,4 +1,5 @@
 import os
+import json
 import time
 import flask
 import logging
@@ -46,7 +47,7 @@ def receive():
     if not running:
         return 'El bot se encuentra apagado.'
     if flask.request.headers['content-Type'] == 'application/json':
-        return flask.request
+        return json.dumps(flask.request.json)
 
 
 def get_updates():
