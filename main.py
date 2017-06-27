@@ -5,6 +5,7 @@ import flask
 import logging
 import requests
 
+from threading import Thread
 from mi_bot import start, get, post, label, close, cmd_error
 
 
@@ -21,24 +22,12 @@ ids = []
 
 @app.route('/')
 def index():
-    global running, ids
-
+    global running
     if not running:
         running = True
-    updates_ini = get_updates()
-
-    while True:
-        updates_now = get_updates()
-        if len(updates_now['result']) != len(updates_ini['result']):
-            updates_ini = updates_now
-            last_update = updates_now['result'][-1]
-            user = last_update['message']['from']['first_name']
-            text = last_update['message']['text']
-            chat_id = last_update['message']['from']['id']
-            handle_msg(text, user, chat_id)
-            if chat_id not in ids:
-                ids.append(chat_id)
-        time.sleep(0.5)
+        thread_update = Thread(target=run_updates)
+        thread_update.start()
+    return 'El servidor está arriba!'
 
 
 @app.route('/upload', methods=['POST'])
@@ -55,6 +44,24 @@ def get_updates():
     url_updates = url + 'getUpdates?timeout=100'
     updates = requests.get(url_updates).json()
     return updates
+
+
+def run_updates():
+    global ids
+
+    updates_ini = get_updates()
+    while True:
+        updates_now = get_updates()
+        if len(updates_now['result']) != len(updates_ini['result']):
+            updates_ini = updates_now
+            last_update = updates_now['result'][-1]
+            user = last_update['message']['from']['first_name']
+            text = last_update['message']['text']
+            chat_id = last_update['message']['from']['id']
+            handle_msg(text, user, chat_id)
+            if chat_id not in ids:
+                ids.append(chat_id)
+        time.sleep(0.5)
 
 
 def handle_msg(text, user, chat_id):
